@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int n=secret.size(),bulls=0,cows=0;
+        vector<int> nums(10,0);
+        for(int i=0;i<n;i++){
+            if(secret[i]==guess[i])
+                bulls++;
+            nums[secret[i]-'0']++;
+        }
+        for(int i=0;i<n;i++){
+            if(nums[guess[i]-'0']>0){
+                nums[guess[i]-'0']--;
+                cows++;
+            }
+        }
+        string s="";
+        s+=to_string(bulls)+'A';
+        s+=to_string(cows-bulls)+'B';
+        return s;
+
+    }
+};
